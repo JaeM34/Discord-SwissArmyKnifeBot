@@ -6,11 +6,15 @@
 import pymongo
 import dotenv
 import discord
+import os
 
-token = dotenv.get_key("discord_token")
-client = discord.client(token)
+dotenv.load_dotenv()
 
-class bot: 
-    def run():
-        print("hello")
+class bot:
+    token = os.environ.get("discord_token")
+    intents = discord.Intents.all()
+    client = discord.Client(intents=intents)
+    def run(self):
+        self.client.run(token=self.token)
+        print("Connection established")
         
